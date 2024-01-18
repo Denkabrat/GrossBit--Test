@@ -17,6 +17,8 @@ export const CurrencyConverter:FC<CurrencyConverterProps> = ({allCurrencies}) =>
     
 
     const cryptoCoins = allCurrencies.data;
+    const formControlSX = { minWidth: 120 };
+    const selectSX = { borderRadius:"0 10px 10px 0"};
     //Можно завернуть все стейты в один с обьектом - но я отказался от этого:
     //1) Стейтов не так много
     //2) Будут лишние коллбэки которых я избежал
@@ -103,8 +105,8 @@ export const CurrencyConverter:FC<CurrencyConverterProps> = ({allCurrencies}) =>
         <div className='exchanger-form'>
             <input placeholder='Введите сумму' value={inputTop} onChange={getTopCoinPrice} required className='currency-input' type="number" />
                
-            <FormControl sx={{ minWidth: 120 }} size="small">
-                <Select sx={{ borderRadius:"0 10px 10px 0"}}
+            <FormControl sx={formControlSX} size="small">
+                <Select sx={selectSX}
                         className='choose-currency'
                         labelId="demo-select-small-label"
                         id="demo-select-small"
@@ -126,8 +128,8 @@ export const CurrencyConverter:FC<CurrencyConverterProps> = ({allCurrencies}) =>
         <div className='exchanger-form'>
             <input placeholder='Результат конвертации' value={inputBottom} onChange={getBottomCoinPrice} readOnly className='currency-input' type="number" />
 
-            <FormControl sx={{ minWidth: 120 }} size="small">
-                <Select sx={{ borderRadius:"0 10px 10px 0"}}
+            <FormControl sx={formControlSX} size="small">
+                <Select sx={selectSX}
                         className='choose-currency'
                         labelId="demo-select-small-label"
                         id="demo-select-small"
