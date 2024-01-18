@@ -10,10 +10,8 @@
 .MuiButtonBase-root{
     gap: 10px;
 }
-.MuiInputBase-root{
-    border-radius: 0 5px 5px 0;
-    
-}
+
+
 
 .currency-input{
     color: rgb(0, 0, 0);
@@ -83,7 +81,10 @@ input[type=number]::-webkit-outer-spin-button {
 input[type=number] {
     -moz-appearance: textfield; /* Для Firefox */
 }
-
+.MuiInputBase-root{
+    border-radius: 0 10px 10px 0;
+    
+}
 
 .exchanger-form{
     height: 50px;

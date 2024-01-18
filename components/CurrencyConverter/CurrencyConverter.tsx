@@ -1,10 +1,10 @@
 'use client'
-import React,{FC,useEffect,useState} from 'react';
+import React,{FC,useEffect,useState,useMemo} from 'react';
+import Select,{SelectChangeEvent} from '@mui/material/Select';
+import { ABRAMOV_LINK, ABRAMOV_NAME } from '@/utils/consts';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select,{SelectChangeEvent} from '@mui/material/Select';
 import Link from 'next/link';
-import { ABRAMOV_LINK, ABRAMOV_NAME } from '@/utils/consts';
 //icons
 import { Icons } from '../Icons/Icons';
 //types
@@ -61,14 +61,16 @@ export const CurrencyConverter:FC<CurrencyConverterProps> = ({allCurrencies}) =>
             handleCurrencySwap();
         }
     };  
+    
     //Фукнция для рендера всех валют
-    const renderAllCryptoCoins = () => (
+    const renderAllCryptoCoins = useMemo(() => (
         cryptoCoins.map((coin) => (
             <MenuItem key={coin.id} value={coin.symbol}>
                 <Icons id={coin.symbol}/> {coin.symbol}
             </MenuItem>
         ))
-    );
+    ), [cryptoCoins]);
+    
     //функция по смене валют местами
     const handleCurrencySwap = () => {
         const currentTopCoin = { ...selectedCoinTop };
@@ -77,17 +79,28 @@ export const CurrencyConverter:FC<CurrencyConverterProps> = ({allCurrencies}) =>
         setSelectedCoinTop(currentBottomCoin);
         setSelectedCoinBottom(currentTopCoin);
     };
-    //Отображение и рендер цен
-    useEffect(()=> {
+
+    //Подсчет и вывод цены монеты
+    const resultValue = useMemo(() => {
         if (selectedCoinTop.price && selectedCoinBottom.price && inputTop) {
-            const resultValue = parseFloat(inputTop) * selectedCoinTop.price / selectedCoinBottom.price;
-
-            setInputBottom(resultValue);
-            return;
+            return parseFloat(inputTop) * selectedCoinTop.price / selectedCoinBottom.price;
         }
+        return '';
+    }, [selectedCoinTop, selectedCoinBottom, inputTop]);
 
-        setInputBottom('');
-    },[selectedCoinTop,selectedCoinBottom,inputTop])
+     //Отображение и рендер цен
+     useEffect(()=> {
+        // if (selectedCoinTop.price && selectedCoinBottom.price && inputTop) {
+        //     const resultValue = parseFloat(inputTop) * selectedCoinTop.price / selectedCoinBottom.price;
+
+        //     setInputBottom(resultValue);
+        //     return;
+        // }
+
+        // setInputBottom('');
+        setInputBottom(resultValue);
+
+    },[resultValue])
 
   return (
     <main className="exchange-wrapper">
@@ -104,7 +117,7 @@ export const CurrencyConverter:FC<CurrencyConverterProps> = ({allCurrencies}) =>
                         value={selectedCoinTop.symbol}
                     >
                     {
-                    renderAllCryptoCoins()
+                    renderAllCryptoCoins
                     }
                 </Select>
             </FormControl>
@@ -126,7 +139,7 @@ export const CurrencyConverter:FC<CurrencyConverterProps> = ({allCurrencies}) =>
                         value={selectedCoinBottom.symbol}
                     >
                     {
-                    renderAllCryptoCoins()
+                    renderAllCryptoCoins
                     }
                 </Select>
             </FormControl>
