@@ -1,0 +1,144 @@
+@media (max-width: 8500px) {
+
+.select-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+} 
+
+.MuiButtonBase-root{
+    gap: 10px;
+}
+
+.currency-input{
+    color: rgb(0, 0, 0);
+    width: 340px;
+    height: 55.5px;
+    font-size: 22px;
+    text-align: center;
+    border-radius: 10px 0 0 10px;
+    border: 1px solid #c5c5c5;
+    border-right: none;
+}
+
+.choose-currency{
+    align-items: center;
+    gap: 10px;
+    border-radius:  0 10px 10px 0;
+    border-left: none;
+    text-align: center;
+    height: 55.5px;
+    width: 150px;
+    font-size: 20px;
+    background-color: white;
+    color: black;
+
+}
+.coin-icon{
+    font-size: 30px;
+}
+}
+
+@media (max-width: 940px) {
+    .currency-input{
+        width: 200px;
+    }
+    
+    .choose-currency{
+        width: 100px;
+        font-size: 12px;
+    }
+    .coin-icon{
+        font-size: 25px;
+    }
+    .select-item {
+        font-size: 15px;
+    } 
+}
+
+@media (max-width: 300px) {
+   .title{
+    font-size: 24px;
+   }
+
+   .currency-input{
+    width: 120px;
+}
+
+    .choose-currency{
+        width:120px;
+    }
+}
+
+//скрытие всех стрелочек у инпутов
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield; /* Для Firefox */
+}
+
+
+.exchanger-form{
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+
+}
+
+.choose-currency .MuiSelect-select {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Стили для выбранного элемента */
+.choose-currency .MuiSelect-select.MuiSelect-selectMenu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.title{
+    color: rgb(255, 255, 255);
+    text-align: center;
+    line-height: 50px;
+}
+
+.title-name{
+    color: white;
+    background-color: black;
+    padding: 5px;
+    text-decoration: none;
+}
+
+.exchange-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.change-currency{
+    background-color: white;
+    color: black;
+    width: 40px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    &:hover{
+        background-color: #c5c5c5;
+    }
+}
+
