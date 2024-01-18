@@ -110,7 +110,8 @@ export const CurrencyConverter:FC<CurrencyConverterProps> = ({allCurrencies}) =>
             <input value={inputTop} onChange={getTopCoinPrice} required className='currency-input' type="number" />
                
             <FormControl sx={{ minWidth: 120 }} size="small">
-                <Select className='choose-currency'
+                <Select sx={{ borderRadius:"0 10px 10px 0"}}
+                        className='choose-currency'
                         labelId="demo-select-small-label"
                         id="demo-select-small"
                         onChange={changeTopCoin}
@@ -132,7 +133,8 @@ export const CurrencyConverter:FC<CurrencyConverterProps> = ({allCurrencies}) =>
             <input value={inputBottom} onChange={getBottomCoinPrice} required className='currency-input' type="number" />
 
             <FormControl sx={{ minWidth: 120 }} size="small">
-                <Select className='choose-currency'
+                <Select sx={{ borderRadius:"0 10px 10px 0"}}
+                        className='choose-currency'
                         labelId="demo-select-small-label"
                         id="demo-select-small"
                         onChange={changeBottomCoin}
