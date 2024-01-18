@@ -5,6 +5,9 @@ import './global.scss';
 export const metadata: Metadata = {
   title: 'Crypto Exchange',
   description: 'Created by Abramov',
+  icons:{
+    icon:'/favicon.png'
+  }
 }
 
 

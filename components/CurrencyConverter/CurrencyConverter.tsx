@@ -14,6 +14,7 @@ import './CurrencyConverter.scss';
 
 
 export const CurrencyConverter:FC<CurrencyConverterProps> = ({allCurrencies}) => {
+    
 
     const cryptoCoins = allCurrencies.data;
     //Можно завернуть все стейты в один с обьектом - но я отказался от этого:
@@ -27,7 +28,6 @@ export const CurrencyConverter:FC<CurrencyConverterProps> = ({allCurrencies}) =>
 
     const [inputTop, setInputTop] = useState<string>('');
     const [inputBottom, setInputBottom] = useState<any>(0);
-
 
 
     //Обработчики для полчения данных о валютах
