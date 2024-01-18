@@ -108,7 +108,7 @@ export const CurrencyConverter:FC<CurrencyConverterProps> = ({allCurrencies}) =>
         <h1 className='title'>Currency-Convertor by <Link href={ABRAMOV_LINK} className='title-name'>{ABRAMOV_NAME}</Link></h1>
 
         <div className='exchanger-form'>
-            <input value={inputTop} onChange={getTopCoinPrice} required className='currency-input' type="number" />
+            <input placeholder='Введите сумму' value={inputTop} onChange={getTopCoinPrice} required className='currency-input' type="number" />
                
             <FormControl sx={{ minWidth: 120 }} size="small">
                 <Select sx={{ borderRadius:"0 10px 10px 0"}}
@@ -131,7 +131,7 @@ export const CurrencyConverter:FC<CurrencyConverterProps> = ({allCurrencies}) =>
         </div>
 
         <div className='exchanger-form'>
-            <input value={inputBottom} onChange={getBottomCoinPrice} readOnly className='currency-input' type="number" />
+            <input placeholder='Результат конвертации' value={inputBottom} onChange={getBottomCoinPrice} readOnly className='currency-input' type="number" />
 
             <FormControl sx={{ minWidth: 120 }} size="small">
                 <Select sx={{ borderRadius:"0 10px 10px 0"}}
