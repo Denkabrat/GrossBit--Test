@@ -52,3 +52,6 @@ export interface SelectedCoin {
   price: number;
   symbol: string;
 }
+export interface IIconsProps {
+  id: string;
+}

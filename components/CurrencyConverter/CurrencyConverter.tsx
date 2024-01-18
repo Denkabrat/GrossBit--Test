@@ -6,10 +6,7 @@ import Select,{SelectChangeEvent} from '@mui/material/Select';
 import Link from 'next/link';
 import { ABRAMOV_LINK, ABRAMOV_NAME } from '@/utils/consts';
 //icons
-import { SiBitcoinsv } from "react-icons/si";
-import { FaEthereum } from "react-icons/fa";
-import { IoLogoUsd } from "react-icons/io5";
-import { GoArrowSwitch } from "react-icons/go";
+import { Icons } from '../Icons/Icons';
 //types
 import { CurrencyConverterProps,SelectedCoin } from '@/types/types';
 //styles
@@ -56,14 +53,10 @@ export const CurrencyConverter:FC<CurrencyConverterProps> = ({allCurrencies}) =>
     const renderAllCryptoCoins = () => (
         cryptoCoins.map((coin) => (
             <MenuItem key={coin.id} value={coin.symbol}>
-                {coin.symbol === 'BTC' && <SiBitcoinsv />}
-                {coin.symbol === 'ETH' && <FaEthereum />}
-                {coin.symbol === 'USDT' && <IoLogoUsd />}
-                {coin.symbol}
+                <Icons id={coin.symbol}/> {coin.symbol}
             </MenuItem>
         ))
     );
-    
     
     const handleCurrencySwap = () => {
         const currentTopCoin = { ...selectedCoinTop };
@@ -106,7 +99,7 @@ export const CurrencyConverter:FC<CurrencyConverterProps> = ({allCurrencies}) =>
         </div>
 
         <div className="button-between">
-            <button onClick={handleCurrencySwap} className='change-currency'><GoArrowSwitch size={25} /></button>
+            <button onClick={handleCurrencySwap} className='change-currency'><Icons id='Arrows'/></button>
         </div>
 
         <div className='exchanger-form'>
