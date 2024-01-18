@@ -3,7 +3,7 @@ import './global.scss';
 
 
 export const metadata: Metadata = {
-  title: 'Crypto Exchange',
+  title: 'Currency-Convertor by Abramov',
   description: 'Created by Abramov',
   icons:{
     icon:'/favicon.png'

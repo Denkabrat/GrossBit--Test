@@ -29,26 +29,38 @@ export const CurrencyConverter:FC<CurrencyConverterProps> = ({allCurrencies}) =>
     const [inputTop, setInputTop] = useState<string>('');
     const [inputBottom, setInputBottom] = useState<any>(0);
 
-
-    //Обработчики для полчения данных о валютах
-    const changeTopCoin = (event:SelectChangeEvent) => {
-        const coin = cryptoCoins.find(coin => coin.symbol === event.target.value);
-
-        if(coin){
-             setSelectedCoinTop({ price: coin.values.USD.price, symbol: coin.symbol });
-        }
-    };
-    const changeBottomCoin = (event:SelectChangeEvent) => {
-        const coin = cryptoCoins.find(coin => coin.symbol === event.target.value);
-
-        if(coin){
-             setSelectedCoinBottom({ price: coin.values.USD.price, symbol: coin.symbol });
-        }
-    };
     //Обработчики для полчения данных о значениях в инпуте
     const getTopCoinPrice = (event:SelectChangeEvent) => setInputTop(event.target.value);
     const getBottomCoinPrice = (event:SelectChangeEvent) => setInputBottom(event.target.value);
-        
+    //Обработчики для полчения данных о валютах
+    const changeTopCoin = (event:SelectChangeEvent) => {
+        //получаем значение инпута
+        const newSymbol = event.target.value;
+        //находим цену монеты по ее символу
+        const coin = cryptoCoins.find(coin => coin.symbol === newSymbol);
+        //записываем в стейт
+        if(coin){
+             setSelectedCoinTop({ price: coin.values.USD.price, symbol: coin.symbol });
+        }
+        //если монета такая выбрана уже то идет замена 
+        if (selectedCoinBottom.symbol === newSymbol) {
+            handleCurrencySwap();
+        }
+    };
+    const changeBottomCoin = (event:SelectChangeEvent) => {
+        //получаем значение инпута
+        const newSymbol = event.target.value;
+        //находим цену монеты по ее символу
+        const coin = cryptoCoins.find(coin => coin.symbol === event.target.value);
+        //записываем в стейт
+        if(coin){
+             setSelectedCoinBottom({ price: coin.values.USD.price, symbol: coin.symbol });
+        }
+        //если монета такая выбрана уже то идет замена 
+        if (selectedCoinTop.symbol === newSymbol) {
+            handleCurrencySwap();
+        }
+    };  
     //Фукнция для рендера всех валют
     const renderAllCryptoCoins = () => (
         cryptoCoins.map((coin) => (
@@ -57,7 +69,7 @@ export const CurrencyConverter:FC<CurrencyConverterProps> = ({allCurrencies}) =>
             </MenuItem>
         ))
     );
-    
+    //функция по смене валют местами
     const handleCurrencySwap = () => {
         const currentTopCoin = { ...selectedCoinTop };
         const currentBottomCoin = { ...selectedCoinBottom };
@@ -69,6 +81,7 @@ export const CurrencyConverter:FC<CurrencyConverterProps> = ({allCurrencies}) =>
     useEffect(()=> {
         if (selectedCoinTop.price && selectedCoinBottom.price && inputTop) {
             const resultValue = parseFloat(inputTop) * selectedCoinTop.price / selectedCoinBottom.price;
+
             setInputBottom(resultValue);
             return;
         }
