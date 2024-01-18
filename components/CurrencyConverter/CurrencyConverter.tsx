@@ -26,12 +26,20 @@ export const CurrencyConverter:FC<CurrencyConverterProps> = ({allCurrencies}) =>
     const [selectedCoinTop, setSelectedCoinTop] = useState<SelectedCoin>({ price: initialTopCoin.values.USD.price, symbol: 'BTC' });
     const [selectedCoinBottom, setSelectedCoinBottom] = useState<SelectedCoin>({ price: initialBottomCoin.values.USD.price, symbol: 'USDT' }); 
 
+    const [lastChanged, setLastChanged] = useState<'top' | 'bottom' | null>(null);
+
     const [inputTop, setInputTop] = useState<string>('');
     const [inputBottom, setInputBottom] = useState<any>(0);
 
     //Обработчики для полчения данных о значениях в инпуте
-    const getTopCoinPrice = (event:SelectChangeEvent) => setInputTop(event.target.value);
-    const getBottomCoinPrice = (event:SelectChangeEvent) => setInputBottom(event.target.value);
+    const getTopCoinPrice = (event: SelectChangeEvent) => {
+        setInputTop(event.target.value);
+        setLastChanged('top');
+    };
+    const getBottomCoinPrice = (event: SelectChangeEvent) => {
+        setInputBottom(event.target.value);
+        setLastChanged('bottom');
+    };
     //Обработчики для полчения данных о валютах
     const changeTopCoin = (event:SelectChangeEvent) => {
         //получаем значение инпута
@@ -90,14 +98,7 @@ export const CurrencyConverter:FC<CurrencyConverterProps> = ({allCurrencies}) =>
 
      //Отображение и рендер цен
      useEffect(()=> {
-        // if (selectedCoinTop.price && selectedCoinBottom.price && inputTop) {
-        //     const resultValue = parseFloat(inputTop) * selectedCoinTop.price / selectedCoinBottom.price;
 
-        //     setInputBottom(resultValue);
-        //     return;
-        // }
-
-        // setInputBottom('');
         setInputBottom(resultValue);
 
     },[resultValue])
@@ -130,7 +131,7 @@ export const CurrencyConverter:FC<CurrencyConverterProps> = ({allCurrencies}) =>
         </div>
 
         <div className='exchanger-form'>
-            <input value={inputBottom} onChange={getBottomCoinPrice} required className='currency-input' type="number" />
+            <input value={inputBottom} onChange={getBottomCoinPrice} readOnly className='currency-input' type="number" />
 
             <FormControl sx={{ minWidth: 120 }} size="small">
                 <Select sx={{ borderRadius:"0 10px 10px 0"}}
