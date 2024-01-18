@@ -26,20 +26,13 @@ export const CurrencyConverter:FC<CurrencyConverterProps> = ({allCurrencies}) =>
     const [selectedCoinTop, setSelectedCoinTop] = useState<SelectedCoin>({ price: initialTopCoin.values.USD.price, symbol: 'BTC' });
     const [selectedCoinBottom, setSelectedCoinBottom] = useState<SelectedCoin>({ price: initialBottomCoin.values.USD.price, symbol: 'USDT' }); 
 
-    const [lastChanged, setLastChanged] = useState<'top' | 'bottom' | null>(null);
-
     const [inputTop, setInputTop] = useState<string>('');
     const [inputBottom, setInputBottom] = useState<any>(0);
 
     //Обработчики для полчения данных о значениях в инпуте
-    const getTopCoinPrice = (event: SelectChangeEvent) => {
-        setInputTop(event.target.value);
-        setLastChanged('top');
-    };
-    const getBottomCoinPrice = (event: SelectChangeEvent) => {
-        setInputBottom(event.target.value);
-        setLastChanged('bottom');
-    };
+    const getTopCoinPrice = (event: SelectChangeEvent) => setInputTop(event.target.value);
+    
+    const getBottomCoinPrice = (event: SelectChangeEvent) => setInputBottom(event.target.value);
     //Обработчики для полчения данных о валютах
     const changeTopCoin = (event:SelectChangeEvent) => {
         //получаем значение инпута
