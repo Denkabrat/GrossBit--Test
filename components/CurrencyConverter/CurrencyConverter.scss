@@ -43,6 +43,7 @@
 @media (max-width: 940px) {
     .currency-input{
         width: 235px;
+        font-size: 20px;
     }
     
     .choose-currency{
@@ -55,15 +56,20 @@
     .select-item {
         font-size: 15px;
     } 
+
+    .title{
+        font-size: 23px;
+    }
 }
 
 @media (max-width: 300px) {
    .title{
-    font-size: 24px;
+    font-size: 20px;
    }
 
    .currency-input{
     width: 120px;
+    font-size: 12px;
 }
 
     .choose-currency{
